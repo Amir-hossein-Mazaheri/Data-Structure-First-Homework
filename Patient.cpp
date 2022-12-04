@@ -35,9 +35,11 @@ Patient::Patient(string aCareCard) {
     this->name = "To be entered";
     this->phone = "To be entered";
     this->email = "To be entered";
-    this->careCard =  aCareCard.length() == 10 ? aCareCard : "0000000000";
+    this->careCard = aCareCard.length() == 10 ? aCareCard : "0000000000";
     this->address = "To be entered";
 }
+
+// All other parameterized constructors -> You need to implement these methods.
 
 Patient::Patient(string aName, string anAddress, string aPhone, string anEmail, string aCareCard) {
     this->name = aName;
@@ -47,6 +49,7 @@ Patient::Patient(string aName, string anAddress, string aPhone, string anEmail, 
     this->careCard = aCareCard.length() == 10 ? aCareCard : "0000000000";
 }
 
+// Getters and setters -> You need to implement these methods.
 
 string Patient::getName() const {
     return this->name;
@@ -84,14 +87,10 @@ void Patient::setPhone(const string aPhone) {
     this->phone = aPhone;
 }
 
-// All other parameterized constructors -> You need to implement these methods.
-
-// Getters and setters -> You need to implement these methods.
-
 // Overloaded Operators
 // Description: Comparison operator. Compares "this" Patient object with "rhs" Patient object.
 //              Returns true if both Patient objects have the same care card number.
-bool Patient::operator == (const Patient & rhs) {
+bool Patient::operator==(const Patient &rhs) {
 
     // Compare both Patient objects
     return this->careCard == rhs.getCareCard();
@@ -101,7 +100,7 @@ bool Patient::operator == (const Patient & rhs) {
 // Description: Greater than operator. Compares "this" Patient object with "rhs" Patient object.
 //              Returns true if the care card number of "this" Patient object is > the care card 
 //              number of "rhs" Patient object
-bool Patient::operator > (const Patient & rhs) {
+bool Patient::operator>(const Patient &rhs) {
 
     // Compare both Patient objects
     return this->careCard > rhs.getCareCard();
@@ -111,7 +110,7 @@ bool Patient::operator > (const Patient & rhs) {
 // Description: Less than operator. Compares "this" Patient object with "rhs" Patient object.
 //              Returns true if the care card number of "this" Patient object is < the care card 
 //              number of "rhs" Patient object.
-bool Patient::operator < (const Patient & rhs) {
+bool Patient::operator<(const Patient &rhs) {
 
     // Compare both Patient objects
     return this->careCard < rhs.getCareCard();
@@ -120,7 +119,7 @@ bool Patient::operator < (const Patient & rhs) {
 
 // For testing purposes!
 // Description: Prints the content of "this".
-ostream & operator<<(ostream & os, const Patient & p) {
+ostream &operator<<(ostream &os, const Patient &p) {
 
     os << p.careCard << " - Patient: " << p.name << ", "
        << p.address << ", " << p.phone << ", " << p.email << endl;
