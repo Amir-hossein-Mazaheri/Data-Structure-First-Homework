@@ -1,0 +1,3 @@
+F:/University Classes/Semester 3/DS/homework-one/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/University Classes/Semester 3/DS/homework-one/cmake-build-debug/CMakeFiles/homework_one.dir
+F:/University Classes/Semester 3/DS/homework-one/cmake-build-debug/CMakeFiles/rebuild_cache.dir
