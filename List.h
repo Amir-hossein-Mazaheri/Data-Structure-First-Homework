@@ -6,7 +6,7 @@
  *                   - Each element is unique (no duplicates).
  *                   - (For you to fill: Add the other invariant(s) of this List class.)
  *
- * Author: (For you to fill)
+ * Author: Amirhossein Mazaheri
  * Date: (For you to fill)
  */
 
@@ -15,6 +15,7 @@
 // You can add #include statements if you wish.
 #include <string>
 #include "Patient.h"
+#include "ListNode.h"
 
 using namespace std;
 
@@ -29,7 +30,10 @@ private:
  * nor can you change them.
  */
 
-    // constant MAX_ELEMENTS
+    ListNode<Patient>* head;
+    ListNode<Patient>* tail;
+
+    const int MAX_ELEMENTS = 1000;  // constant MAX_ELEMENTS
     // Data structure of elements
     int elementCount;                  // Number of elements in the data structure
     int capacity;                      // Actual maximum capacity of data structure
@@ -43,9 +47,12 @@ public:
  * Bottom line: you cannot change the public interface of this List class.
  * 
  */
+    void baseConstructor();
 
     // Default constructor
     List();
+
+    List(int initCapacity);
 
     // Destructor
     // Description: Destruct a List object, releasing heap-allocated memory.
@@ -53,6 +60,8 @@ public:
 
     // Description: Returns the total element count currently stored in List.
     int  getElementCount() const;
+
+    bool isDuplicate(ListNode<Patient>* node);
 
     // Description: Insert an element.
     // Precondition: newElement must not already be in data collection.
