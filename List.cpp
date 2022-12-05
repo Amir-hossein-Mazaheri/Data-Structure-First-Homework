@@ -51,6 +51,7 @@ bool List::insert(const Patient &newElement) {
     ListNode<Patient> *newNode = new ListNode<Patient>();
     newNode->setData(newElement);
 
+//    TODO: this should be fixed
     this->elementCount++;
 
     if (!this->head->getNextNode()) {
@@ -72,6 +73,30 @@ bool List::insert(const Patient &newElement) {
     newNode->setNextNode(this->tail);
 
     this->tail->setPrevNode(newNode);
+
+    return true;
+}
+
+bool List::remove(const Patient &toBeRemoved) {
+    ListNode<Patient> *tmp = this->head;
+
+    while (tmp) {
+        if (tmp->getData() == toBeRemoved) {
+            auto nextNode = tmp->getNextNode();
+            auto prevNode = tmp->getPrevNode();
+
+            nextNode->setPrevNode(prevNode);
+            prevNode->setNextNode(nextNode);
+
+            delete tmp;
+
+            this->elementCount--;
+
+            return true;
+        }
+
+        tmp = tmp->getNextNode();
+    }
 
     return true;
 }
