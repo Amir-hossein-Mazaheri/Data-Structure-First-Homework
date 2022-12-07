@@ -7,14 +7,12 @@
  *                   - (For you to fill: Add the other invariant(s) of this List class.)
  *
  * Author: Amirhossein Mazaheri
- * Date: (For you to fill)
+ * Date: 1401/9/15
  */
 
 #pragma once
 
-// You can add #include statements if you wish.
 #include <string>
-
 #include "Patient.h"
 #include "ListNode.h"
 
@@ -31,14 +29,18 @@ private:
  * nor can you change them.
  */
 
+    // points to the first element in the list
     ListNode<Patient>* head;
+
+    // points to the last element in the list
     ListNode<Patient>* tail;
 
-    const int MAX_ELEMENTS = 1000;  // constant MAX_ELEMENTS
-    // Data structure of elements
+    const int MAX_ELEMENTS = 1000;      // constant MAX_ELEMENTS
     int elementCount;                  // Number of elements in the data structure
-    int capacity;                      // Actual maximum capacity of data structure
+    int capacity;                     // Actual maximum capacity of data structure
 
+    // find the right place for adding the item and return the node that item should be inserted after
+    // also used in insert to make sorted inserts
     ListNode<Patient>* findPlace(ListNode<Patient>* node);
 
 public:
@@ -50,12 +52,15 @@ public:
  * Bottom line: you cannot change the public interface of this List class.
  * 
  */
+
+    // this is a base for two constructor which holds common parts of them
     void baseConstructor();
 
     // Default constructor
     List();
 
-    List(int initCapacity);
+    // constructor that sets the capacity and act like the List() constructor
+    explicit List(int initCapacity);
 
     // Destructor
     // Description: Destruct a List object, releasing heap-allocated memory.
@@ -64,6 +69,8 @@ public:
     // Description: Returns the total element count currently stored in List.
     int  getElementCount() const;
 
+    // check that whether a patient is duplicate or not used in insert to stop
+    // adding duplicate items
     bool isDuplicate(ListNode<Patient>* node);
 
     // Description: Insert an element.
