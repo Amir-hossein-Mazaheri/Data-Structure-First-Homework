@@ -1,14 +1,12 @@
+#include <iostream>
+
 #include "List.h"
 
+using namespace std;
+
 void List::baseConstructor() {
-    this->head = new ListNode<Patient>();
-    this->tail = new ListNode<Patient>();
-
-    this->head->setPrevNode(nullptr);
-    this->head->setNextNode(nullptr);
-
-    this->tail->setPrevNode(nullptr);
-    this->tail->setNextNode(nullptr);
+    this->head = nullptr;
+    this->tail = nullptr;
 
     this->elementCount = 0;
     this->capacity = this->MAX_ELEMENTS;
@@ -48,16 +46,19 @@ bool List::isDuplicate(ListNode<Patient> *node) {
 }
 
 bool List::insert(const Patient &newElement) {
-    ListNode<Patient> *newNode = new ListNode<Patient>();
+    auto newNode = new ListNode<Patient>();
     newNode->setData(newElement);
 
+    if (this->elementCount == this->capacity) {
+        return false;
+    }
 
-    if (!this->head->getNextNode()) {
-        newNode->setPrevNode(this->head);
+    if (!this->head) {
+        newNode->setPrevNode(nullptr);
 
-        this->head->setNextNode(newNode);
+        newNode->setNextNode(nullptr);
 
-        this->tail->setPrevNode(newNode);
+        this->head = this->tail = newNode;
 
         this->elementCount++;
 
@@ -68,11 +69,12 @@ bool List::insert(const Patient &newElement) {
         return false;
     }
 
-    newNode->setPrevNode(this->tail->getPrevNode());
+    this->tail->setNextNode(newNode);
 
-    newNode->setNextNode(this->tail);
+    newNode->setPrevNode(this->tail);
+    newNode->setNextNode(nullptr);
 
-    this->tail->setPrevNode(newNode);
+    this->tail = newNode;
 
     this->elementCount++;
 
@@ -80,15 +82,40 @@ bool List::insert(const Patient &newElement) {
 }
 
 bool List::remove(const Patient &toBeRemoved) {
-    ListNode<Patient> *tmp = this->head;
+    auto tmp = this->head;
 
     while (tmp) {
         if (tmp->getData() == toBeRemoved) {
+
             auto nextNode = tmp->getNextNode();
             auto prevNode = tmp->getPrevNode();
 
-            nextNode->setPrevNode(prevNode);
-            prevNode->setNextNode(nextNode);
+            if (nextNode)
+                nextNode->setPrevNode(prevNode);
+            else {
+                this->tail = prevNode;
+
+                if (prevNode)
+                    prevNode->setNextNode(nullptr);
+
+            }
+
+            if (prevNode)
+                prevNode->setNextNode(nextNode);
+            else {
+                this->head = nextNode;
+
+                if (nextNode)
+                    nextNode->setPrevNode(nullptr);
+            }
+
+            if (this->elementCount == 1) {
+                this->tail = this->head = nullptr;
+            }
+
+            tmp->setNextNode(nullptr);
+            tmp->setPrevNode(nullptr);
+
 
             delete tmp;
 
@@ -100,5 +127,47 @@ bool List::remove(const Patient &toBeRemoved) {
         tmp = tmp->getNextNode();
     }
 
-    return true;
+    return false;
+}
+
+void List::removeAll() {
+    auto tmp = this->head;
+
+    while (tmp) {
+        auto nextNode = tmp->getNextNode();
+
+        delete tmp;
+
+        tmp = nullptr;
+
+        tmp = nextNode;
+    }
+
+    this->tail = this->head = nullptr;
+
+    this->elementCount = 0;
+}
+
+Patient *List::search(const Patient &target) {
+    auto tmp = this->head;
+
+    while (tmp) {
+        if (tmp->getData() == target)
+            return tmp->getPData();
+
+
+        tmp = tmp->getNextNode();
+    }
+
+    return nullptr;
+}
+
+void List::printList() {
+    auto tmp = this->head;
+
+    while (tmp) {
+        cout << "item: " << tmp->getData() << endl;
+
+        tmp = tmp->getNextNode();
+    }
 }

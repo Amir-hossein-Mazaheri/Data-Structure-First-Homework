@@ -22,6 +22,10 @@ public:
         return this->data;
     }
 
+    T* getPData() {
+        return &this->data;
+    }
+
     // Sets previous node of current node which parameter should be a pointer
     //                                                              of ListNode
     void setPrevNode(ListNode<T>* node) {
