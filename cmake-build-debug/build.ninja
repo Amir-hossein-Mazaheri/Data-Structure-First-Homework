@@ -60,8 +60,8 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_homework_one: phony || CMakeFiles/homework_one.dir
 
-build CMakeFiles/homework_one.dir/main.cpp.obj: CXX_COMPILER__homework_one_Debug F$:/University$ Classes/Semester$ 3/DS/homework-one/main.cpp || cmake_object_order_depends_target_homework_one
-  DEP_FILE = CMakeFiles\homework_one.dir\main.cpp.obj.d
+build CMakeFiles/homework_one.dir/WalkIn.cpp.obj: CXX_COMPILER__homework_one_Debug F$:/University$ Classes/Semester$ 3/DS/homework-one/WalkIn.cpp || cmake_object_order_depends_target_homework_one
+  DEP_FILE = CMakeFiles\homework_one.dir\WalkIn.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\homework_one.dir
   OBJECT_FILE_DIR = CMakeFiles\homework_one.dir
@@ -92,7 +92,7 @@ build CMakeFiles/homework_one.dir/ListNode.cpp.obj: CXX_COMPILER__homework_one_D
 #############################################
 # Link the executable homework_one.exe
 
-build homework_one.exe: CXX_EXECUTABLE_LINKER__homework_one_Debug CMakeFiles/homework_one.dir/main.cpp.obj CMakeFiles/homework_one.dir/Patient.cpp.obj CMakeFiles/homework_one.dir/List.cpp.obj CMakeFiles/homework_one.dir/ListNode.cpp.obj
+build homework_one.exe: CXX_EXECUTABLE_LINKER__homework_one_Debug CMakeFiles/homework_one.dir/WalkIn.cpp.obj CMakeFiles/homework_one.dir/Patient.cpp.obj CMakeFiles/homework_one.dir/List.cpp.obj CMakeFiles/homework_one.dir/ListNode.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\homework_one.dir

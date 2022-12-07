@@ -1,0 +1,7 @@
+# ninja log v5
+11	572	6921057806684945	build.ninja	c6fae80494fad06e
+10	522	6921057813037510	CMakeFiles/homework_one.dir/ListNode.cpp.obj	bbe6e4d4122e9500
+0	1118	6921057818395388	CMakeFiles/homework_one.dir/List.cpp.obj	5364be809db45268
+16	1130	6921057818707899	CMakeFiles/homework_one.dir/WalkIn.cpp.obj	62f5fb199c683602
+4	1275	6921057820492612	CMakeFiles/homework_one.dir/Patient.cpp.obj	3d95837a4cf2b622
+1276	1693	6921057824782315	homework_one.exe	299cbbca0d8cc57c
