@@ -45,19 +45,38 @@ bool List::isDuplicate(ListNode<Patient> *node) {
     return false;
 }
 
+ListNode<Patient> *List::findPlace(ListNode<Patient> *node) {
+    auto tmp = this->head;
+
+    while (tmp) {
+        if (node->getData().getCareCard() == "0000000000") break;
+
+        if (stoll(tmp->getData().getCareCard()) < stoll(node->getData().getCareCard())) {
+            return tmp;
+        }
+
+//        if(tmp->getData().getCareCard() > node->getData().getCareCard() && tmp->getNextNode()->getData().getCareCard() < node->getData().getCareCard()) {
+//            return tmp;
+//        }
+
+        tmp = tmp->getNextNode();
+    }
+
+    return this->tail;
+}
+
 bool List::insert(const Patient &newElement) {
     auto newNode = new ListNode<Patient>();
     newNode->setData(newElement);
+
+    newNode->setPrevNode(nullptr);
+    newNode->setNextNode(nullptr);
 
     if (this->elementCount == this->capacity) {
         return false;
     }
 
     if (!this->head) {
-        newNode->setPrevNode(nullptr);
-
-        newNode->setNextNode(nullptr);
-
         this->head = this->tail = newNode;
 
         this->elementCount++;
@@ -69,12 +88,46 @@ bool List::insert(const Patient &newElement) {
         return false;
     }
 
-    this->tail->setNextNode(newNode);
+//    this->tail->setNextNode(newNode);
+//
+//    newNode->setPrevNode(this->tail);
+//    newNode->setNextNode(nullptr);
+//
+//    this->tail = newNode;
 
-    newNode->setPrevNode(this->tail);
-    newNode->setNextNode(nullptr);
+    auto place = this->findPlace(newNode);
 
-    this->tail = newNode;
+    if (place == this->tail) {
+
+        this->tail->setNextNode(newNode);
+
+        newNode->setPrevNode(this->tail);
+
+        this->tail = newNode;
+
+    } else if (place == this->head) {
+
+        this->head->setPrevNode(newNode);
+
+        newNode->setNextNode(this->head);
+
+        this->head = newNode;
+
+    } else {
+
+        place->setPrevNode(newNode);
+
+        cout << "place get prev -> get next: " << place->getPrevNode()->getNextNode() << endl;
+
+        place->getPrevNode()->setNextNode(newNode);
+
+        cout << "place get prev -> get next: " << place->getPrevNode()->getNextNode() << endl;
+
+        newNode->setNextNode(place);
+
+        newNode->setPrevNode(place->getPrevNode());
+
+    }
 
     this->elementCount++;
 

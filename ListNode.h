@@ -8,17 +8,17 @@ private:
     T data;
 public:
     // Returns previous node value which is a pointer of ListNode class
-    ListNode<T>* getPrevNode() {
+    ListNode<T>* getPrevNode() const {
         return this->prev;
     }
 
     // Returns next node value which is a pointer of ListNode class
-    ListNode<T>* getNextNode() {
+    ListNode<T>* getNextNode() const {
         return this->next;
     }
 
     // Returns node data which type is "T" that can be dynamic
-    T getData() {
+    T getData() const {
         return this->data;
     }
 

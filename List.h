@@ -39,6 +39,8 @@ private:
     int elementCount;                  // Number of elements in the data structure
     int capacity;                      // Actual maximum capacity of data structure
 
+    ListNode<Patient>* findPlace(ListNode<Patient>* node);
+
 public:
 
 /* 
