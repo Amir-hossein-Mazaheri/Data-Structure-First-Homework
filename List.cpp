@@ -51,7 +51,17 @@ ListNode<Patient> *List::findPlace(ListNode<Patient> *node) {
     while (tmp) {
         if (node->getData().getCareCard() == "0000000000") break;
 
-        if (stoll(tmp->getData().getCareCard()) < stoll(node->getData().getCareCard())) {
+        auto a = stoll(tmp->getData().getCareCard());
+        auto b = stoll(node->getData().getCareCard());
+        long long c;
+
+        if (tmp->getNextNode()) {
+            c = stoll(tmp->getNextNode()->getData().getCareCard());
+        } else {
+            c = 0;
+        }
+
+        if (a > b && b > c) {
             return tmp;
         }
 
@@ -88,13 +98,6 @@ bool List::insert(const Patient &newElement) {
         return false;
     }
 
-//    this->tail->setNextNode(newNode);
-//
-//    newNode->setPrevNode(this->tail);
-//    newNode->setNextNode(nullptr);
-//
-//    this->tail = newNode;
-
     auto place = this->findPlace(newNode);
 
     if (place == this->tail) {
@@ -105,28 +108,18 @@ bool List::insert(const Patient &newElement) {
 
         this->tail = newNode;
 
-    } else if (place == this->head) {
-
-        this->head->setPrevNode(newNode);
-
-        newNode->setNextNode(this->head);
-
-        this->head = newNode;
-
     } else {
 
-        place->setPrevNode(newNode);
+        auto prevNode = place->getPrevNode();
+        auto nextNode = place->getNextNode();
 
-        cout << "place get prev -> get next: " << place->getPrevNode()->getNextNode() << endl;
+        newNode->setNextNode(nextNode);
 
-        place->getPrevNode()->setNextNode(newNode);
+        place->setNextNode(newNode);
 
-        cout << "place get prev -> get next: " << place->getPrevNode()->getNextNode() << endl;
+        nextNode->setPrevNode(newNode);
 
-        newNode->setNextNode(place);
-
-        newNode->setPrevNode(place->getPrevNode());
-
+        newNode->setPrevNode(place);
     }
 
     this->elementCount++;
