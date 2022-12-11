@@ -66,23 +66,25 @@ ListNode<Patient> *List::findPlace(ListNode<Patient> *node) {
     while (tmp) {
         if (node->getData().getCareCard() == "0000000000") break;
 
+        // stoll is a function that converts string to long int
+        // a is the converted current node data
         auto a = stoll(tmp->getData().getCareCard());
+        // b is the node that should be inserted data
         auto b = stoll(node->getData().getCareCard());
+        // c is the element that is after the current element
         long long c;
 
+        // this checks that there is an element after current element or not if not sets c to zero to prevent error
         if (tmp->getNextNode()) {
             c = stoll(tmp->getNextNode()->getData().getCareCard());
         } else {
             c = 0;
         }
 
+        // if this comparison become true, it means element should be added between those elements
         if (a > b && b > c) {
             return tmp;
         }
-
-//        if(tmp->getData().getCareCard() > node->getData().getCareCard() && tmp->getNextNode()->getData().getCareCard() < node->getData().getCareCard()) {
-//            return tmp;
-//        }
 
         tmp = tmp->getNextNode();
     }

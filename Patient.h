@@ -2,9 +2,9 @@
  * Patient.h
  * 
  * Class Description: Models a walk-in clinic patient.
- * Class Invariant: Each patient has a unique care card number.
- *                  This care card number must have 10 digits.
- *                  This care card number cannot be modified. 
+ * Class Invariant: - Each patient has a unique care card number.
+ *                  - This care card number must have 10 digits.
+ *                  - This care card number cannot be modified.
  *
  * Author: Amirhossein Mazaheri
  * Date: 1401/9/15
@@ -21,8 +21,6 @@ using namespace std;
 class Patient {
 
 private:
-    // For you to fill: There are plenty of hints in the provided files to help you complete this section.
-
     string name;
     string address;
     string phone;
@@ -52,9 +50,11 @@ public:
     //                All other data members set to "To be entered".
     Patient(string aCareCard);
 
-    // Add more parameterized constructors here!
-
+    // Description: initialize Patient with all needed data
     Patient(string aName, string anAddress, string aPhone, string anEmail, string aCareCard);
+
+    // Description: initialize Patient only with necessary data
+    Patient(string aName, string aPhone, string aCareCard);
 
     // Getters and setters
     // Description: Returns patient's name.

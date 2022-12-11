@@ -4,7 +4,7 @@
  * Class Description: List data collection ADT.
  * Class Invariant: Data collection with the following characteristics:
  *                   - Each element is unique (no duplicates).
- *                   - (For you to fill: Add the other invariant(s) of this List class.)
+ *                   - Sorted based on elements' patients care card number
  *
  * Author: Amirhossein Mazaheri
  * Date: 1401/9/15
@@ -29,18 +29,18 @@ private:
  * nor can you change them.
  */
 
-    // points to the first element in the list
+    // Description: Points to the first element of list
     ListNode<Patient>* head;
 
-    // points to the last element in the list
+    // Description: Points to the last element of list
     ListNode<Patient>* tail;
 
     const int MAX_ELEMENTS = 1000;      // constant MAX_ELEMENTS
     int elementCount;                  // Number of elements in the data structure
     int capacity;                     // Actual maximum capacity of data structure
 
-    // find the right place for adding the item and return the node that item should be inserted after
-    // also used in insert to make sorted inserts
+    // Description: Returns the correct node that from the list which data is bigger that node data
+    //              suitable for sorted nodes insert
     ListNode<Patient>* findPlace(ListNode<Patient>* node);
 
 public:
@@ -53,13 +53,13 @@ public:
  * 
  */
 
-    // this is a base for two constructor which holds common parts of them
+    // Description: Returns and hold the common part between two constructors
     void baseConstructor();
 
     // Default constructor
     List();
 
-    // constructor that sets the capacity and act like the List() constructor
+    // Description: Initialize List with capacity
     explicit List(int initCapacity);
 
     // Destructor
@@ -69,8 +69,7 @@ public:
     // Description: Returns the total element count currently stored in List.
     int  getElementCount() const;
 
-    // check that whether a patient is duplicate or not used in insert to stop
-    // adding duplicate items
+    // Description: Checks that node data is already in the list or note
     bool isDuplicate(ListNode<Patient>* node);
 
     // Description: Insert an element.

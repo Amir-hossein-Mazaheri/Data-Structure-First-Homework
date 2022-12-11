@@ -39,8 +39,6 @@ Patient::Patient(string aCareCard) {
     this->address = "To be entered";
 }
 
-// All other parameterized constructors -> You need to implement these methods.
-
 Patient::Patient(string aName, string anAddress, string aPhone, string anEmail, string aCareCard) {
     this->name = aName;
     this->address = anAddress;
@@ -49,7 +47,13 @@ Patient::Patient(string aName, string anAddress, string aPhone, string anEmail, 
     this->careCard = aCareCard.length() == 10 ? aCareCard : "0000000000";
 }
 
-// Getters and setters -> You need to implement these methods.
+Patient::Patient(string aName, string aPhone, string aCareCard) {
+    this->name = aName;
+    this->phone = aPhone;
+    this->careCard = aCareCard.length() == 10 ? aCareCard : "0000000000";
+    this->email = "To be entered";
+    this->address = "To be entered";
+}
 
 string Patient::getName() const {
     return this->name;
